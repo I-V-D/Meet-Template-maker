@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meet Template WIP</title>
+	 <h1>Meet Template WIP</h1>
+	<style>
+	
+	h1 {
+		text-align: center;
+		color:whtie;
+			
+	}
+	textarea{
+		background-color: black;
+		color: white;
+	}
+	#Copytemp {
+		background-color: blue;
+		color: white;
+		font-weight: bold;
+		padding: 3px;
+		height: 30px;
+		width: 100%;
+    }
+	input {
+		background-color: black;
+		color: white;
+		}
+	
+	#timeInput {
+		background-color: black;
+		color: white;
+	}
+	body {
+		font-family: Verdana;
+		background-color: black;
+		color: white;
+		
+    }
+	.inputs {
+		padding: 9px;
+		position: fixed;
+		right: 50%;
+		left: 4px;
+		width: auto;
+		height: 50%;
+		border: solid 1px #fff;
+		overflow: auto;
+	}
+	
+	.tempOut {
+   
+    padding: 10px;
+    padding-top: 15px;
+    position: fixed;
+    background-color: black;
+    right: auto;
+    left: 50%;
+    width: fit-content;
+    height: 50%;
+    border: solid 1px #fff;
+    color: white;
+	overflow: auto;
+     }
+	
+	</style>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var themeInput = document.getElementById("themeInput");
+			var timeInput = document.getElementById("timeInput");
+			
+			
+			themeInput.oninput = updateTemplate;
+			timeInput.oninput = updateTemplate;
+			Copytemp.onclick = getTemp;
+			Description.onmouseleave = updateTemplate;  
+			
+			
+			  document.getElementById("Description").addEventListener("change", function() {
+				  updateTemplate();
+				  var div = document.getElementById("inputs");
+				  var input = document.getElementById("Descriptiont");
+				  
+					if (this.checked) {
+					  if (!input) {
+						  input = document.createElement("TEXTAREA");
+						  input.rows= 4;
+						  input.cols= 40;
+						  input.id= "Descriptiont";
+						  input.name= "Descriptiont";
+						  div.appendChild(input)
+						  div.insertBefore(input, Copytemp)
+						  var desc = document.getElementById("Descriptiont");
+						  if (desc) { 
+							Descriptiont.oninput = updateTemplate;
+						  }
+					  }
+					} else if (!this.checked && input) {
+					
+						div.removeChild(input);
+					}
+				
+			    });
+		});
+		
+		
+		
+		function updateTemplate() {
+			var time = document.getElementById("timeInput").value;
+			console.log(time);
+			var theme = document.getElementById("themeInput").value;
+			console.log(theme);
+			var tempOut = document.getElementById("tempOut");
+			
+			var desc = document.getElementById("Descriptiont");
+			if (desc) {
+				var desct = document.getElementById("Descriptiont").value;
+				desc.addEventListener("keydown", function (event) {
+				if (event.keyCode === 13) {
+				  
+				  var greaterThanEvent = new KeyboardEvent("keydown", {
+					key: ">",
+					code: "GreaterThan",
+					keyCode: 62,
+					which: 62,
+					bubbles: true,
+					cancelable: true,
+				  });
+
+				  // Dispatch the event on the textarea
+				  desc.dispatchEvent(greaterThanEvent);
+
+				  console.log("Enter key pressed! Simulated \">\" key press.");
+					
+				  }
+				});
+				console.log(desct);
+				tempOut.innerHTML = "<strong>Host:</strong> <@292400112963944449><br><br>" +
+										 "<strong>PS Server:</strong> @PS5 Server<br><br>" +
+										 "<strong>Time/Place:</strong> " + time + " EST On me<br><br>" +
+										 "<strong>Theme:</strong> " + theme + "<br>"+
+										 "<pre>" + "> "+  desct + "</pre><br><br>" +
+										
+										 "<strong>Events:</strong>  park & cruise, etc.<br><br>" +
+										 "<strong>How to join:</strong> Add `IV--GTA` on PSN for access.<br><br>" +
+										 "Make sure to read <#1006249308158443600> and <#1006249310712762398> prior to joining.<br><br>" +
+										 "@everyone<br><br>" +
+										 "React accordingly below 👇"; 
+			} else {							 
+				tempOut.innerHTML = "<strong>Host:</strong> <@292400112963944449><br><br>" +
+											 "<strong>PS Server:</strong> @PS5 Server<br><br>" +
+											 "<strong>Time/Place:</strong> " + time + " EST On me<br><br>" +
+											 "<strong>Theme:</strong> " + theme + "<br><br>" +
+											 "<strong>Events:</strong>  park & cruise, etc.<br><br>" +
+											 "<strong>How to join:</strong> Add `IV--GTA` on PSN for access.<br><br>" +
+											 "Make sure to read <#1006249308158443600> and <#1006249310712762398> prior to joining.<br><br>" +
+											 "@everyone<br><br>" +
+											 "React accordingly below 👇"; 							 
+			}
+		}
+		window.onload = function() {
+			updateTemplate();
+			var now = new Date();
+			now.setHours(now.getHours() + 1);
+			var nextHour = now.getHours();
+			var cmins = now.getMinutes();
+			var mins = Math.round(cmins / 15) * 15;
+				if (mins == 60) {
+				console.log(mins);
+				console.log(cmins);
+					var mins = 0;
+					var nextHour = nextHour + 1;
+				}
+			timeInput.value = `${nextHour.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+			
+			var time = document.getElementById("timeInput").value;
+			var theme = document.getElementById("themeInput").value = "Anything";
+			/*var desct = document.getElementById("Descriptiont").value = "Insert Theme Description";*/
+			var tempOut = document.getElementById("tempOut");
+				
+				var desc = document.getElementById("Descriptiont");
+				
+				if (desc) {
+					var desct = document.getElementById("Descriptiont").value;
+					desc.addEventListener("keydown", function (event) {
+				if (event.keyCode === 13) {
+				  
+				  var greaterThanEvent = new KeyboardEvent("keydown", {
+					key: ">",
+					code: "GreaterThan",
+					keyCode: 62,
+					which: 62,
+					bubbles: true,
+					cancelable: true,
+				  });
+
+				  // Dispatch the event on the textarea
+				  desc.dispatchEvent(greaterThanEvent);
+
+				  console.log("Enter key pressed! Simulated \">\" key press.");
+					
+				  }
+				});
+					
+					console.log(desct);
+					tempOut.innerHTML = "<strong>Host:</strong> <@292400112963944449><br><br>" +
+											 "<strong>PS Server:</strong> @PS5 Server<br><br>" +
+											 "<strong>Time/Place:</strong> " + time + " EST On me<br><br>" +
+											 "<strong>Theme:</strong> " + theme + "<br>"+
+											 "> "+ "<pre>" + desct + "</pre><br><br>" +
+											
+											 "<strong>Events:</strong>  park & cruise, etc.<br><br>" +
+											 "<strong>How to join:</strong> Add `IV--GTA` on PSN for access.<br><br>" +
+											 "Make sure to read <#1006249308158443600> and <#1006249310712762398> prior to joining.<br><br>" +
+											 "@everyone<br><br>" +
+											 "React accordingly below 👇"; 
+				} else {							 
+				tempOut.innerHTML = "<strong>Host:</strong> <@292400112963944449><br><br>" +
+											 "<strong>PS Server:</strong> @PS5 Server<br><br>" +
+											 "<strong>Time/Place:</strong> " + time + " EST On me<br><br>" +
+											 "<strong>Theme:</strong> " + theme + "<br><br>" +
+											 "<strong>Events:</strong>  park & cruise, etc.<br><br>" +
+											 "<strong>How to join:</strong> Add `IV--GTA` on PSN for access.<br><br>" +
+											 "Make sure to read <#1006249308158443600> and <#1006249310712762398> prior to joining.<br><br>" +
+											 "@everyone<br><br>" +
+											 "React accordingly below 👇"; 							 
+				}
+        }
+		function getTemp() {
+			var range = document.createRange();
+             range.selectNode(tempOut);
+             window.getSelection().removeAllRanges();
+             window.getSelection().addRange(range);
+             document.execCommand("copy");
+             window.getSelection().removeAllRanges();
+		}
+		
+</script>
+</head>
+<body>
+<div class="inputs" id="inputs">
+<label for="time">Meet Time</label><br>
+<input type="time" id="timeInput" name="time"><br>
+
+<label for="theme">Meet Theme</label><br>
+<input type="text" id="themeInput" name="theme">
+
+<label for="Description">Description:</label>
+<input type="checkbox" id="Description" name="Description"><br>
+<button id="Copytemp">Copy Template</button>
+</div>
+
+<div class="tempOut" id="tempOut"></div>
+
+</body>
+</html> 
